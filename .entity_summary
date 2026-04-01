@@ -1,0 +1,7 @@
+- Kundenverwaltung (kundenverwaltung): kundennummer[string/text], firmenname[string/text], ansprechpartner_vorname[string/text], ansprechpartner_nachname[string/text], ansprechpartner_email[string/email], ansprechpartner_telefon[string/tel], strasse[string/text], hausnummer[string/text], plz[string/text], ort[string/text], website[string/url], notizen_kunde[string/textarea]
+- Mitarbeiterverwaltung (mitarbeiterverwaltung): mitarbeiter_vorname[string/text], mitarbeiter_nachname[string/text], mitarbeiter_email[string/email], mitarbeiter_telefon[string/tel], rolle[string/text], stundensatz[number], eintrittsdatum[date/date], notizen_mitarbeiter[string/textarea]
+- Leistungskatalog (leistungskatalog): leistungsbezeichnung[string/text], leistungsbeschreibung[string/textarea], einheit[lookup/select], standardpreis[number], steuersatz_leistung[lookup/select], aktiv[bool]
+- Rechnungsverwaltung (rechnungsverwaltung): rechnungsnummer[string/text], rechnungsdatum[date/date], faelligkeitsdatum[date/date], rechnungsstatus[lookup/select], kunde_ref[applookup/select], mitarbeiter_ref[applookup/select], leistungen_ref[applookup/select], menge[number], nettobetrag[number], steuersatz_rechnung[lookup/select], bruttobetrag[number], zahlungsdatum[date/date], zahlungsart[lookup/select], rechnungsdokument[file], notizen_rechnung[string/textarea]
+  → kunde_ref links to app_id 69cca67904d6dcbf70bd3438
+  → mitarbeiter_ref links to app_id 69cca67d1dda0328fd80587c
+  → leistungen_ref links to app_id 69cca67d98bb6b40fd543485
