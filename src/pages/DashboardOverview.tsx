@@ -64,15 +64,10 @@ export default function DashboardOverview() {
   const ueberfaelligCount = enrichedRechnungen.filter(
     r => r.fields.rechnungsstatus?.key === 'ueberfaellig',
   ).length;
-  const now = new Date();
   const bezahltBrutto = enrichedRechnungen
-    .filter(r => {
-      if (r.fields.rechnungsstatus?.key !== 'bezahlt') return false;
-      if (!r.fields.zahlungsdatum) return false;
-      const d = new Date(r.fields.zahlungsdatum);
-      return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
-    })
+    .filter(r => r.fields.rechnungsstatus?.key === 'bezahlt')
     .reduce((s, r) => s + (r.fields.bruttobetrag ?? 0), 0);
+  const bezahltCount = enrichedRechnungen.filter(r => r.fields.rechnungsstatus?.key === 'bezahlt').length;
 
   const columnData = KANBAN_COLUMNS.map(col => ({
     ...col,
@@ -174,9 +169,9 @@ export default function DashboardOverview() {
           icon={<IconAlertTriangle size={18} className="text-muted-foreground" />}
         />
         <StatCard
-          title="Bezahlt (Monat)"
+          title="Bezahlt"
           value={formatCurrency(bezahltBrutto)}
-          description="Zahlungseingänge diesen Monat"
+          description={`${bezahltCount} ${bezahltCount === 1 ? 'Rechnung bezahlt' : 'Rechnungen bezahlt'}`}
           icon={<IconCircleCheck size={18} className="text-muted-foreground" />}
         />
       </div>
